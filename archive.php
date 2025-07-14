@@ -30,9 +30,12 @@ $query = new WP_Query($args);
         <?php endif; ?>
     </div>
 
+    <?php if ( $query->found_posts > 6 ): ?>            
     <div class="load-more-wrap">
         <button id="load-more" data-page="1" data-max="<?php echo $query->max_num_pages; ?>">Показать ещё</button>
     </div>
+    <?php endif; ?> 
+
 </div>
 
 
