@@ -5,11 +5,19 @@
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
+$category = get_queried_object(); // получаем текущую категорию
+
 $args = array(
     'post_type' => 'post',
-    'posts_per_page' => 6,
+    'posts_per_page' => 8,
     'paged' => $paged,
 );
+
+// если это категория, добавим условие
+if (is_category() && isset($category->term_id)) {
+    $args['cat'] = $category->term_id;
+}
+
 $query = new WP_Query($args);
 ?>
 
